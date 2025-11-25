@@ -143,6 +143,7 @@ jobs:
                   <span id="keyword-badge" class="inline-block px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium"></span>
                   <span id="refresh-timer" class="text-blue-600 font-medium"></span>
                 </div>
+              </div>
               <div class="bg-slate-100 rounded-lg p-2 sm:p-2.5 px-1.5 pt-2.5 pb-1 my-2.5">
                   <canvas id="statusChart"></canvas>
               </div>
@@ -234,8 +235,6 @@ jobs:
               let REFRESH_INTERVAL = 300; // seconds (5 minutes)
               let secondsLeft = REFRESH_INTERVAL;
               const timer = document.getElementById('refresh-timer');
-              const bar = document.getElementById('refresh-bar');
-              const glaze = document.getElementById('refresh-glaze');
               fetch('status.csv').then(r => r.text()).then(csv => {
                   const rows = parseCSV(csv);
                   // Chart data
