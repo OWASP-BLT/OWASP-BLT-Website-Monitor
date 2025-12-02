@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     './index.html',
+    // The workflow file contains the HTML template that generates index.html
     './.github/workflows/website-monitor.yml',
   ],
   theme: {
