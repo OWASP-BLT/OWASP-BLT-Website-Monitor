@@ -7,7 +7,7 @@ A simple GitHub Actions-based website monitoring solution that checks website av
 - Monitors website availability every 5 minutes
 - Checks for specific keywords in website content
 - Maintains a 30-day history of response times and keyword status
-- Visual dashboard with response time chart
+- Visual dashboard with response time chart built with Tailwind CSS
 - Slack notifications for downtime and missing keywords
 - Automatic updates via GitHub Pages
 - Configurable website URL and keyword
@@ -104,6 +104,24 @@ The dashboard shows:
 - Verify the keyword exists in the website content
 - Check if the website's content is dynamically loaded (which might not be detected)
 - Ensure the website URL is properly formatted (include https:// or http://)
+
+## Development
+
+This project uses Tailwind CSS for styling. The dashboard currently uses Tailwind CSS via CDN for simplicity, but a configuration file (`tailwind.config.js`) is provided for future customization.
+
+To work with Tailwind CSS locally:
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. (Optional) Build optimized CSS:
+   ```bash
+   npm run build:css
+   ```
+
+Note: The current setup uses Tailwind CSS via CDN in production, which is sufficient for this simple monitoring dashboard.
 
 ## Contributing
 
