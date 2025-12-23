@@ -121,10 +121,10 @@ jobs:
                 </a>
               </div>
               <div class="flex gap-1 flex-wrap my-2.5">
-                  <a class="bg-blue-600 text-white px-2 py-1 rounded-md cursor-pointer no-underline text-xs sm:text-sm transition-colors hover:bg-blue-700 inline-flex items-center gap-1" href="https://github.com/${{ github.repository }}/actions/workflows/website-monitor.yml" target="_blank"><i class="fa-solid fa-play"></i>Run Now</a>
-                  <a class="bg-blue-600 text-white px-2 py-1 rounded-md cursor-pointer no-underline text-xs sm:text-sm transition-colors hover:bg-blue-700 inline-flex items-center gap-1" href="https://github.com/${{ github.repository }}/edit/main/.github/workflows/website-monitor.yml" target="_blank"><i class="fa-solid fa-sliders"></i>Edit Config</a>
-                  <a class="bg-blue-600 text-white px-2 py-1 rounded-md cursor-pointer no-underline text-xs sm:text-sm transition-colors hover:bg-blue-700 inline-flex items-center gap-1" href="https://github.com/${{ github.repository }}/actions/workflows/test-slack.yml" target="_blank"><i class="fa-brands fa-slack"></i>Test Slack</a>
-                  <a class="bg-blue-600 text-white px-2 py-1 rounded-md cursor-pointer no-underline text-xs sm:text-sm transition-colors hover:bg-blue-700 inline-flex items-center gap-1" href="https://github.com/${{ github.repository }}/blob/main/status.csv" target="_blank"><i class="fa-solid fa-table"></i>View CSV</a>
+                  <a class="action-button" href="https://github.com/${{ github.repository }}/actions/workflows/website-monitor.yml" target="_blank"><i class="fa-solid fa-play"></i>Run Now</a>
+                  <a class="action-button" href="https://github.com/${{ github.repository }}/edit/main/.github/workflows/website-monitor.yml" target="_blank"><i class="fa-solid fa-sliders"></i>Edit Config</a>
+                  <a class="action-button" href="https://github.com/${{ github.repository }}/actions/workflows/test-slack.yml" target="_blank"><i class="fa-brands fa-slack"></i>Test Slack</a>
+                  <a class="action-button" href="https://github.com/${{ github.repository }}/blob/main/status.csv" target="_blank"><i class="fa-solid fa-table"></i>View CSV</a>
               </div>
               <div id="slack-warning"></div>
               <div class="grid grid-cols-3 gap-3 items-center mb-2.5 overflow-x-auto">
@@ -141,13 +141,13 @@ jobs:
                   </div>
                   <div class="bg-slate-100 rounded-lg p-2 sm:p-2.5 text-center min-w-[120px]">
                       <h2 class="m-0 mb-1 text-sm sm:text-base text-gray-600 font-medium">Status</h2>
-                      <span class="inline-block px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium" id="status-badge"></span>
+                      <span class="status-badge" id="status-badge"></span>
                   </div>
               </div>
               <div class="bg-slate-100 rounded-lg p-2 sm:p-2.5 mb-2.5 text-center">
                 <div class="flex items-center justify-center gap-1.5 text-sm sm:text-base">
                   <span class="text-gray-600"><i class="fa-solid fa-key"></i> Keyword</span>
-                  <span id="keyword-badge" class="inline-block px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium"></span>
+                  <span id="keyword-badge" class="keyword-badge"></span>
                 </div>
               </div>
               <div class="bg-slate-100 rounded-lg p-2 sm:p-2.5 px-1.5 pt-2.5 pb-1 my-2.5">
@@ -218,18 +218,18 @@ jobs:
               const statusBadge = document.getElementById('status-badge');
               if (status === 'success') {
                   statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Up';
-                  statusBadge.className = 'inline-block px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800';
+                  statusBadge.className = 'status-badge status-success';
               } else {
                   statusBadge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Down';
-                  statusBadge.className = 'inline-block px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800';
+                  statusBadge.className = 'status-badge status-error';
               }
               const keywordBadge = document.getElementById('keyword-badge');
               if (keyword === 'found') {
                   keywordBadge.innerHTML = `<i class='fa-solid fa-check'></i> Found: <b>${keywordText}</b>`;
-                  keywordBadge.className = 'inline-block px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800';
+                  keywordBadge.className = 'keyword-badge bg-blue-100 text-blue-800';
               } else {
                   keywordBadge.innerHTML = `<i class='fa-solid fa-xmark'></i> Not Found: <b>${keywordText}</b>`;
-                  keywordBadge.className = 'inline-block px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800';
+                  keywordBadge.className = 'keyword-badge status-warning';
               }
 
               // Parse status.csv for chart and table
@@ -273,8 +273,8 @@ jobs:
                   const tbody = document.querySelector('#recent-table tbody');
                   tbody.innerHTML = '';
                   rows.slice(-10).reverse().forEach(r => {
-                      const statusCell = r[2]==='success' ? '<span class="inline-block px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800"><i class="fa-solid fa-circle-check"></i> Up</span>' : '<span class="inline-block px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800"><i class="fa-solid fa-circle-xmark"></i> Down</span>';
-                      const keywordCell = r[3]==='found' ? `<span class="inline-block px-2.5 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800"><i class='fa-solid fa-check'></i> Found: <b>${keywordText}</b></span>` : `<span class="inline-block px-2.5 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800"><i class='fa-solid fa-xmark'></i> Not Found: <b>${keywordText}</b></span>`;
+                      const statusCell = r[2]==='success' ? '<span class="status-badge status-success"><i class="fa-solid fa-circle-check"></i> Up</span>' : '<span class="status-badge status-error"><i class="fa-solid fa-circle-xmark"></i> Down</span>';
+                      const keywordCell = r[3]==='found' ? `<span class="keyword-badge bg-blue-100 text-blue-800"><i class='fa-solid fa-check'></i> Found: <b>${keywordText}</b></span>` : `<span class="keyword-badge status-warning"><i class='fa-solid fa-xmark'></i> Not Found: <b>${keywordText}</b></span>`;
                       const ms = parseInt(r[1]);
                       const time = new Date(r[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
                       tbody.innerHTML += `<tr class="border-b border-slate-200"><td class="p-1.5">${time}</td><td class="p-1.5">${isNaN(ms) ? '' : ms.toLocaleString()} ms</td><td class="p-1.5">${statusCell}</td><td class="p-1.5">${keywordCell}</td></tr>`;
