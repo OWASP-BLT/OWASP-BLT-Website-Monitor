@@ -1,0 +1,19 @@
+{
+  "name": "owasp-blt-website-monitor",
+  "version": "1.0.0",
+  "description": "GitHub Actions-based website monitoring solution with uptime tracking and keyword detection",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "keywords": [
+    "monitoring",
+    "uptime",
+    "github-actions",
+    "tailwind"
+  ],
+  "author": "OWASP BLT",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
