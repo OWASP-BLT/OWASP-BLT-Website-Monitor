@@ -1,0 +1,19 @@
+{
+  "name": "owasp-blt-website-monitor",
+  "version": "1.0.0",
+  "description": "A simple GitHub Actions-based website monitoring solution",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "keywords": [
+    "monitoring",
+    "website",
+    "github-actions",
+    "tailwind"
+  ],
+  "author": "OWASP-BLT",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

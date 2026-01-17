@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the Website Monitor dashboard */
+/* The dashboard currently uses Tailwind CSS via CDN in production */
+/* This file is provided for future custom styling if needed */
